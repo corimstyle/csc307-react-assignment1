@@ -11,12 +11,15 @@ class App extends Component {
   removeCharacter = (index) => {
     const { characters } = this.state;
 
+    this.makeDeleteCall(characters[index]).then(callResult => {
+      if (callResult !== false) {
         this.setState({
           characters: characters.filter((character, i) => {
             return i !== index;
           }),
         });
-
+      }
+    });
   };
 
   makeDeleteCall(character) {
